@@ -2,14 +2,13 @@ package com.dkanen
 
 class Dispatcher {
 
-    var size = 0
+    var subscriber: (String) -> String = { "test"  }
 
-    fun dispatch(s: String) {
-        size++
+    fun subscribe(subscriberFunction: (String) -> String) {
+        subscriber = subscriberFunction
     }
 
-    fun has(s: String): Boolean {
-        return size > 0
+    fun broadcast(event: String) {
+        subscriber(event)
     }
-
 }
