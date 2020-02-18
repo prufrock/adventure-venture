@@ -10,9 +10,8 @@ class DispatcherTest {
         val dispatcher = Dispatcher()
 
         var passedValue = ""
-        val subscribeFunction: (String) -> String = { event ->
+        val subscribeFunction: (String) -> Unit = { event ->
             passedValue = event
-            passedValue
         }
 
         dispatcher.subscribe(subscribeFunction)

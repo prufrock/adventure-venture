@@ -2,9 +2,9 @@ package com.dkanen
 
 class Dispatcher {
 
-    var subscriber: (String) -> String = { "test"  }
+    var subscriber: (String) -> Unit = {}
 
-    fun subscribe(subscriberFunction: (String) -> String) {
+    fun subscribe(subscriberFunction: (String) -> Unit) {
         subscriber = subscriberFunction
     }
 
