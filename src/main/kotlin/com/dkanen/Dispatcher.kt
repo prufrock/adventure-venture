@@ -11,4 +11,8 @@ class Dispatcher {
     fun broadcast(event: String) {
         subscriber(event)
     }
+
+    fun subscribe(newSubscriber: Subscriber) {
+        subscriber = {event -> newSubscriber.receive(event)}
+    }
 }
