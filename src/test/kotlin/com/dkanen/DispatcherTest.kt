@@ -19,11 +19,8 @@ class DispatcherTest {
         val dispatcher = Dispatcher()
 
         var passedValue = ""
-        val subscribeFunction: (String) -> Unit = { event ->
-            passedValue = event
-        }
 
-        dispatcher.subscribe(subscribeFunction)
+        dispatcher.subscribe { event -> passedValue = event }
         dispatcher.broadcast("event")
 
         assertEquals("event", passedValue)
