@@ -38,4 +38,22 @@ class DispatcherTest {
 
         assertEquals("event", subscriber.message)
     }
+
+    @Test
+    fun `more than one Subscriber can receive a broadcast`() {
+        val dispatcher = Dispatcher()
+
+        var firstValue = ""
+
+        dispatcher.subscribe { event -> firstValue = event }
+
+        var secondValue = ""
+
+        dispatcher.subscribe { event -> secondValue = event }
+
+        dispatcher.broadcast("event")
+
+        assertEquals("event", firstValue)
+        assertEquals("event", secondValue)
+    }
 }
