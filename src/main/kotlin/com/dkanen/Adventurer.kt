@@ -1,10 +1,17 @@
 package com.dkanen
 
-class Adventurer(val name: String, val dispatcher: Dispatcher) {
+class Adventurer(val name: String, var ether: Dispatcher): Subscriber {
 
     var location: Int = 0
 
-    fun walk(): Int = (++location)
+    init {
+        ether.subscribe(this)
+    }
+
+    fun walk(): Int {
+        ether.broadcast("walk")
+        return location
+    }
 
     fun talk(): String = "You talk to no one in particular."
 
@@ -13,5 +20,11 @@ class Adventurer(val name: String, val dispatcher: Dispatcher) {
     fun talk(listener: Adventurer): String = "Talking to yourself may be a sign of genius"
 
     fun heard(): String = "How fair the beets at this establishment?"
+
+    override fun receive(event: String) {
+        if (event == "walk") {
+            ++location
+        }
+    }
 
 }

@@ -23,7 +23,7 @@ class AdventurerTest {
     }
 
     @Test
-    fun `it can walk in one space`() {
+    fun `it can walk one space`() {
         assertEquals(1, susan.walk())
     }
 
