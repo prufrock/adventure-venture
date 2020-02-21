@@ -9,7 +9,7 @@ class AdventurerTest {
 
     @BeforeTest
     fun setUp() {
-        susan = Adventurer("Susan the Valiant")
+        susan = Adventurer("Susan the Valiant", Dispatcher())
     }
 
     @Test
@@ -50,7 +50,7 @@ class AdventurerTest {
 
     @Test
     fun `it can talk to somebody else`() {
-        val betty = Adventurer("Betty the Bold")
+        val betty = Adventurer("Betty the Bold", Dispatcher())
         susan.talk(betty)
         assertEquals("How fair the beets at this establishment?", betty.heard() )
     }

@@ -1,6 +1,6 @@
 package com.dkanen
 
-class Adventurer(val name: String) {
+class Adventurer(val name: String, val dispatcher: Dispatcher) {
 
     var location: Int = 0
 
