@@ -5,11 +5,13 @@ import kotlin.test.*
 
 class AdventurerTest {
 
-    lateinit var susan: Adventurer
+    private lateinit var dispatcher: Dispatcher
+    private lateinit var susan: Adventurer
 
     @BeforeTest
     fun setUp() {
-        susan = Adventurer("Susan the Valiant", Dispatcher())
+        dispatcher = Dispatcher()
+        susan = Adventurer("Susan the Valiant", dispatcher)
     }
 
     @Test
@@ -34,6 +36,11 @@ class AdventurerTest {
     }
 
     @Test
+    fun `it doesn't hear a sound when no sound is made`() {
+        assertEquals("", susan.heard())
+    }
+
+    @Test
     fun `it can talk to no one in particular and get a response that's there nobody to talk to`() {
         assertEquals("You talk to no one in particular.", susan.talk())
     }
@@ -50,7 +57,7 @@ class AdventurerTest {
 
     @Test
     fun `it can talk to somebody else`() {
-        val betty = Adventurer("Betty the Bold", Dispatcher())
+        val betty = Adventurer("Betty the Bold", dispatcher)
         susan.talk(betty)
         assertEquals("How fair the beets at this establishment?", betty.heard() )
     }
