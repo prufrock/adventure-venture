@@ -56,4 +56,26 @@ class DispatcherTest {
         assertEquals("event", firstValue)
         assertEquals("event", secondValue)
     }
+
+    @Test
+    fun `it can dispatch an empty event object`() {
+        val dispatcher = Dispatcher()
+
+        var passedValue: Event = EmptyEvent()
+
+        dispatcher.eventSubscribe { event -> passedValue = event }
+
+        assertEquals("", passedValue.name)
+    }
+
+    @Test
+    fun `it can dispatch an emitted event object`() {
+        val dispatcher = Dispatcher()
+
+        var passedValue: Event = EmittedEvent("emittedSound")
+
+        dispatcher.eventSubscribe { event -> passedValue = event }
+
+        assertEquals("emittedSound", passedValue.name)
+    }
 }
