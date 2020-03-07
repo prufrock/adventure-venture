@@ -18,6 +18,6 @@ class Dispatcher {
     }
 
     fun subscribe(newSubscriber: Subscriber) {
-        simpleSubscriberList.add({ event -> newSubscriber.receive(event)})
+        simpleSubscriberList.add { event -> newSubscriber.receive(event)}
     }
 }
