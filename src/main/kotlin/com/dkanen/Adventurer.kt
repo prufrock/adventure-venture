@@ -39,5 +39,4 @@ class Adventurer(val name: String, var ether: Dispatcher): Subscriber {
             status = "heard something"
         }
     }
-
 }
