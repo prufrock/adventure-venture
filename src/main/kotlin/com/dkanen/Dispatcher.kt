@@ -3,7 +3,7 @@ package com.dkanen
 class Dispatcher {
 
     val simpleSubscriberList: MutableList<(String) -> Unit> = mutableListOf()
-    val eventSubscriberList: MutableList<(EmptyEvent) -> Unit> = mutableListOf()
+    val eventSubscriberList: MutableList<(Event) -> Unit> = mutableListOf()
 
     fun subscribe(subscriberFunction: (String) -> Unit) {
         simpleSubscriberList.add(subscriberFunction)
