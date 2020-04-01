@@ -6,6 +6,15 @@ import kotlin.test.*
 
 class GenericDispatcherTest {
 
+    class SimpleSubscriber: GenericSubscriber<Event> {
+
+        var message:Event = EmptyEvent()
+
+        override fun receive(event: Event) {
+            message = event
+        }
+    }
+
     @Test
     fun `it can be instantiated`() {
         val dispatcher = GenericDispatcher<Event>()
@@ -13,14 +22,27 @@ class GenericDispatcherTest {
     }
 
     @Test
+    fun `when a Subscriber is passed to subscribe it can receive a broadcast`() {
+        val dispatcher = GenericDispatcher<Event>()
+
+        val subscriber = SimpleSubscriber()
+
+        dispatcher.subscribe(subscriber)
+
+        dispatcher.broadcast(EmittedEvent("droppedCookie"))
+
+        assertEquals("droppedCookie", subscriber.message.name)
+    }
+
+    @Test
     fun `more than one Subscriber can receive a broadcast`() {
         val dispatcher = GenericDispatcher<Event>()
 
-        var firstValue: Event = EmittedEvent("")
+        var firstValue: Event = EmptyEvent()
 
         dispatcher.subscribe { event -> firstValue = event }
 
-        var secondValue: Event = EmittedEvent("")
+        var secondValue: Event = EmptyEvent()
 
         dispatcher.subscribe { event -> secondValue = event }
 

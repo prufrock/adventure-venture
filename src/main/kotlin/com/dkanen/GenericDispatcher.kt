@@ -8,6 +8,10 @@ class GenericDispatcher<T> {
         subscriberList.add(subscriberFunction)
     }
 
+    fun subscribe(newSubscriber: GenericSubscriber<T>) {
+        subscriberList.add { event -> newSubscriber.receive(event)}
+    }
+
     fun broadcast(event: T) {
         subscriberList.map { subscriber -> subscriber(event)}
     }
