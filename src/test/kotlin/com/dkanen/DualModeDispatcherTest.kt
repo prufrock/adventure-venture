@@ -3,7 +3,7 @@ package com.dkanen
 import kotlin.test.Test
 import kotlin.test.*
 
-class DispatcherTest {
+class DualModeDispatcherTest {
 
     class SimpleSubscriber: Subscriber {
 
@@ -16,7 +16,7 @@ class DispatcherTest {
 
     @Test
     fun `when a lambda is passed to subscribe it can receive a broadcast`() {
-        val dispatcher = Dispatcher()
+        val dispatcher = DualModeDispatcher()
 
         var passedValue = ""
 
@@ -28,7 +28,7 @@ class DispatcherTest {
 
     @Test
     fun `when a Subscriber is passed to subscribe it can receive a broadcast`() {
-        val dispatcher = Dispatcher()
+        val dispatcher = DualModeDispatcher()
 
         val subscriber = SimpleSubscriber()
 
@@ -41,7 +41,7 @@ class DispatcherTest {
 
     @Test
     fun `more than one Subscriber can receive a broadcast`() {
-        val dispatcher = Dispatcher()
+        val dispatcher = DualModeDispatcher()
 
         var firstValue = ""
 
@@ -59,7 +59,7 @@ class DispatcherTest {
 
     @Test
     fun `it can dispatch an empty event object`() {
-        val dispatcher = Dispatcher()
+        val dispatcher = DualModeDispatcher()
 
         var passedValue: Event = EmptyEvent()
 
@@ -70,7 +70,7 @@ class DispatcherTest {
 
     @Test
     fun `it can dispatch an emitted event object`() {
-        val dispatcher = Dispatcher()
+        val dispatcher = DualModeDispatcher()
 
         var passedValue: Event = EmittedEvent("emittedSound")
 

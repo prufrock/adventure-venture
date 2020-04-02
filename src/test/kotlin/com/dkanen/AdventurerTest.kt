@@ -5,13 +5,13 @@ import kotlin.test.*
 
 class AdventurerTest {
 
-    private lateinit var dispatcher: Dispatcher
+    private lateinit var dualModeDispatcher: DualModeDispatcher
     private lateinit var susan: Adventurer
 
     @BeforeTest
     fun setUp() {
-        dispatcher = Dispatcher()
-        susan = Adventurer("Susan the Valiant", dispatcher)
+        dualModeDispatcher = DualModeDispatcher()
+        susan = Adventurer("Susan the Valiant", dualModeDispatcher)
     }
 
     @Test
@@ -57,7 +57,7 @@ class AdventurerTest {
 
     @Test
     fun `it can talk to somebody else`() {
-        val betty = Adventurer("Betty the Bold", dispatcher)
+        val betty = Adventurer("Betty the Bold", dualModeDispatcher)
         susan.talk(betty)
         assertEquals("How fair the beets at this establishment?", betty.heard() )
     }

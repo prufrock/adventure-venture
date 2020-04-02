@@ -1,6 +1,6 @@
 package com.dkanen
 
-class Dispatcher {
+class DualModeDispatcher {
 
     val simpleSubscriberList: MutableList<(String) -> Unit> = mutableListOf()
     val eventSubscriberList: MutableList<(Event) -> Unit> = mutableListOf()

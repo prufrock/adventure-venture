@@ -1,6 +1,6 @@
 package com.dkanen
 
-class Adventurer(val name: String, var ether: Dispatcher): Subscriber {
+class Adventurer(val name: String, var ether: DualModeDispatcher): Subscriber {
 
     var location: Int = 0
 

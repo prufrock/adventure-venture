@@ -1,6 +1,6 @@
 package com.dkanen
 
-class Tavern(var name: String, val ether: Dispatcher): Subscriber {
+class Tavern(var name: String, val ether: DualModeDispatcher): Subscriber {
 
     init {
         ether.subscribe(this)
