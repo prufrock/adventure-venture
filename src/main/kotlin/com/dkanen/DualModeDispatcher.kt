@@ -1,11 +1,11 @@
 package com.dkanen
 
-class DualModeDispatcher {
+class DualModeDispatcher: Dispatcher<String> {
 
     val simpleSubscriberList: MutableList<(String) -> Unit> = mutableListOf()
     val eventSubscriberList: MutableList<(Event) -> Unit> = mutableListOf()
 
-    fun subscribe(subscriberFunction: (String) -> Unit) {
+    override fun subscribe(subscriberFunction: (String) -> Unit) {
         simpleSubscriberList.add(subscriberFunction)
     }
 
@@ -13,11 +13,11 @@ class DualModeDispatcher {
         eventSubscriberList.add(subscriberFunction)
     }
 
-    fun broadcast(event: String) {
+    override fun broadcast(event: String) {
         simpleSubscriberList.map { subscriber -> subscriber(event)}
     }
 
-    fun subscribe(newSubscriber: Subscriber) {
+    override fun subscribe(newSubscriber: GenericSubscriber<String>) {
         simpleSubscriberList.add { event -> newSubscriber.receive(event)}
     }
 }

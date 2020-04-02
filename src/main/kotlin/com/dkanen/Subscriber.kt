@@ -1,6 +1,6 @@
 package com.dkanen
 
-interface Subscriber {
+interface Subscriber: GenericSubscriber<String> {
 
-    fun receive(event: String)
+    override fun receive(event: String)
 }
